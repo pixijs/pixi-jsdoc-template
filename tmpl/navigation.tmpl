@@ -46,6 +46,20 @@ var self = this;
             }
             ?>
             </ul>
+            <ul class="typedefs itemMembers">
+            <?js
+            if (item.interfaces.length) {
+            ?>
+            <span class="subtitle">Interfaces</span>
+            <?js
+                item.interfaces.forEach(function (v) {
+            ?>
+                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+            <?js
+                });
+            }
+            ?>
+            </ul>
             <ul class="methods itemMembers">
             <?js
             if (item.methods.length) {
