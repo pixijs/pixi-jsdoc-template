@@ -2,7 +2,10 @@
   "name": "jaguarjs-jsdoc",
   "version": "1.0.3",
   "description": "Jaguar.js template for JSDoc 3",
-  "dependencies": {},
+  "dependencies": {
+    "taffydb": "^2.7.2",
+    "underscore": "^1.7.0"
+  },
   "devDependencies": {
     "jshint": "^2.9.2",
     "less": "^2.7.1",
