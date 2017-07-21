@@ -31,6 +31,11 @@
     "jaguar.js",
     "template"
   ],
+  "files": [
+    "static",
+    "tmpl",
+    "publish.js"
+  ],
   "author": "davidshimjs",
   "contributors": [
     "Matt Karl <matt@mattkarl.com>"
