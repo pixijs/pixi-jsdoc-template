@@ -223,6 +223,10 @@ function buildNav(members) {
                 events: find({
                     kind: 'event',
                     memberof: v.longname
+                }),
+                classes: find({
+                    kind: 'class',
+                    memberof: v.longname
                 })
             });
         });
@@ -250,6 +254,19 @@ function buildNav(members) {
                     kind: 'event',
                     memberof: v.longname
                 })
+            });
+        });
+    }
+
+    if (members.tutorials.length) {
+        _.each(members.tutorials, function(v) {
+            nav.push({
+                type: 'tutorial',
+                name: v.name,
+                longname: v.longname,
+                title: v.title,
+                children: v.children,
+                parent: v.parent
             });
         });
     }
