@@ -137,6 +137,26 @@
     <?js } ?>
     
     <?js
+        var interfaces = self.find({kind: 'interface', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+        if (interfaces && interfaces.length && interfaces.forEach) {
+    ?>
+        <h3 class="subsection-title">Interface Definitions</h3>
+
+        <dl><?js interfaces.forEach(function(e) {
+                if (e.signature) {
+            ?>
+                <?js= self.partial('method.tmpl', e) ?>
+            <?js
+                }
+                else {
+            ?>
+                <?js= self.partial('members.tmpl', e) ?>
+            <?js
+                }
+            }); ?></dl>
+    <?js } ?>
+
+    <?js
         var events = self.find({kind: 'event', memberof: title === 'Global' ? {isUndefined: true} : doc.longname}); 
         if (events && events.length && events.forEach) { 
     ?>
