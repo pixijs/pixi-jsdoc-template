@@ -9,7 +9,7 @@
 Install the template using NPM:
 
 ```bash
-npm install pixi-jsdoc-template --save-dev
+npm install @pixi/jsdoc-template --save-dev
 ```
 
 ## Usage
@@ -55,7 +55,7 @@ You can set options for customizing your documentations. Notice the `"template"`
         "private": false,
         "lenient": true,
         "destination": "./docs",
-        "template": "./node_modules/pixi-jsdoc-template"
+        "template": "./node_modules/@pixi/jsdoc-template"
     }
 }
 ```
