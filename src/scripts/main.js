@@ -1,57 +1,46 @@
 $(function () {
-    // Search Items
-    $('#search').on('keyup', function (e) {
-        var value = $(this).val();
-        var $el = $('.navigation');
 
+    var $nav = $('.navigation');
+    var $list = $nav.find('.list');
+
+    // Search input
+    $('#search').on('keyup', function (e) {
+        var value = this.value.trim();
         if (value) {
             var regexp = new RegExp(value, 'i');
-            $el.find('li, .itemMembers').hide();
+            $nav.addClass('searching')
+                .removeClass('not-searching')
+                .find('li, .itemMembers')
+                .removeClass('match');
 
-            $el.find('li').each(function (i, v) {
+            $nav.find('li').each(function (i, v) {
                 var $item = $(v);
-
                 if ($item.data('name') && regexp.test($item.data('name'))) {
-                    $item.show();
-                    $item.closest('.itemMembers').show();
-                    $item.closest('.item').show();
+                    $item.addClass('match');
+                    $item.closest('.itemMembers').addClass('match');
+                    $item.closest('.item').addClass('match');
                 }
             });
         } else {
-            $el.find('.item, .itemMembers').show();
+            $nav.removeClass('searching')
+                .addClass('not-searching')
+                .find('.item, .itemMembers')
+                .removeClass('match');
         }
-
-        $el.find('.list').scrollTop(0);
-    });
-
-    // Toggle when click an item element
-    $('.navigation').on('click', '.title', function (e) {
-        $(this).parent().find('.itemMembers').toggle();
+        $list.scrollTop(0);
     });
 
     // Show an item related a current documentation automatically
+    $nav.addClass('not-searching');
     var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
-    var $currentItem = $('.navigation .item[data-name*="' + filename + '"]:eq(0)');
+    var $currentItem = $nav.find('.item[data-name*="' + filename + '"]:eq(0)');
 
     if ($currentItem.length) {
         $currentItem
             .remove()
-            .prependTo('.navigation .list')
-            .show()
-            .find('.itemMembers')
-                .show();
+            .prependTo($list)
+            .addClass('current');
     }
-
-    // Auto resizing on navigation
-    var _onResize = function () {
-        var height = $(window).height();
-        var $el = $('.navigation');
-
-        $el.height(height).find('.list').height(height - 133);
-    };
-
-    $(window).on('resize', _onResize);
-    _onResize();
 
     // disqus code
     if (config.disqus) {

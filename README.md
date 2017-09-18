@@ -1,7 +1,6 @@
-# Jaguar.js template for JSDoc 3
+# PixiJS template for JSDoc 3
 
-- [Jaguar.js](http://jaguarjs.com/)
-- [Jaguar.js Documentations](http://jaguarjs.com/doc/)
+- [PixiJS](http://pixijs.com/)
 - [JSDoc3](https://github.com/jsdoc3/jsdoc)
 - [JSDoc3 API Documentations](http://usejsdoc.org)
 
@@ -10,7 +9,7 @@
 Install the template using NPM:
 
 ```bash
-npm install jaguarjs-jsdoc --save-dev
+npm install pixi-jsdoc-template --save-dev
 ```
 
 ## Usage
@@ -23,7 +22,7 @@ jsdoc -c conf.json -R README.md
 
 ### conf.json
 
-You can set options for customizing your documentations. Notice the `"template"` field for setting the path to **jaguarjs-jsdoc**.
+You can set options for customizing your documentations. Notice the `"template"` field for setting the path to **pixi-jsdoc-template**.
 
 ```json
 "templates": {
@@ -56,7 +55,7 @@ You can set options for customizing your documentations. Notice the `"template"`
         "private": false,
         "lenient": true,
         "destination": "./docs",
-        "template": "./node_modules/jaguarjs-jsdoc"
+        "template": "./node_modules/pixi-jsdoc-template"
     }
 }
 ```

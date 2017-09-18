@@ -5,6 +5,7 @@ var self = this;
 <dt>
     <div class="nameContainer<?js if (data.inherited) { ?> inherited<?js } ?>">
         <h4 class="name" id="<?js= id ?>">
+            <a class="share-icon" href="#<?js= id ?>"><span class="glyphicon glyphicon-link"></span></a>
             <?js if (data.inherited || data.inherits) { ?>
                 <span class="inherited"><?js= this.linkto(data.inherits, 'inherited') ?></span>
             <?js } ?>
@@ -13,7 +14,7 @@ var self = this;
     
         <?js if (data.meta) {?>
         <div class="tag-source">
-            <?js= self.linkto(meta.filename) ?>, <?js= self.linkto(meta.filename, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>
+            <?js= self.linkto(meta.filename, meta.filename.substr(meta.filename.lastIndexOf('/') + 1) + ':' + meta.lineno, null, 'line' + meta.lineno) ?>
         </div>
         <?js } ?>
     </div>

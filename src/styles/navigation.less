@@ -1,58 +1,62 @@
 @import "common.less";
 
-::-webkit-scrollbar {
+.list::-webkit-scrollbar {
     width: 8px;
     background-color: transparent;
 }
 
-::-webkit-scrollbar-thumb {
-    background-color: gray;
+.list::-webkit-scrollbar-thumb {
+    background-color: @colorNavLink;
     border-radius: 4px;
 }
 
 .navigation {
     position: fixed;
-    float: left;
-    width: @navWidth;
-    height: 100%;
-    background-color: @colorBgNavi;
+    overflow: hidden;
+    min-width: @navWidth;
+    width:25%;
+    top:0;
+    left:0;
+    bottom:0;
+    background-color: @colorNavBg;
 
     .applicationName {
         margin: 0;
-        margin-top: 15px;
-        padding: 10px 15px;
-        font: bold 1.25em Helvetica;
-        color: #fff;
-
+        padding: 20px;
+        font-weight: bold;
+        white-space: nowrap;
+        color: @colorNavHighlight;
         a {
-            color: #fff;
+            color: @colorNavHighlight;
         }
     }
 
     .search {
-        padding: 10px 15px;
-
+        padding: 0 20px;
         input {
-            background-color: #333;
-            color: #fff;
-            border-color: #555;
+            background-color: @colorNavSearchBg;
+            color: @colorNavHighlight;
+            border-color: @colorNavBorder;
         }
     }
 
     .list {
-        padding: 10px 15px 0 15px;
-        position: relative;
+        padding: 20px;
+        position: absolute;
         overflow: auto;
+        -webkit-overflow-scrolling: touch;
         width: 100%;
+        top: 100px;
+        bottom: 0;
     }
 
     li.item {
         margin-bottom: 8px;
         padding-bottom: 8px;
-        border-bottom: 1px solid #333;
-
+        border-bottom: 1px solid @colorNavBorder;
+        overflow: hidden;
         a {
-            color: #bbb;
+            color: @colorNavLink;
             &:hover {
                 color: #fff;
             }
@@ -61,43 +65,60 @@
             cursor: pointer;
             position: relative;
             a {
-                color: #e1e1e1;
+                color: @colorNavNormal;
                 &:hover {
-                    color: #fff;
+                    color: @colorNavHighlight;
                 }
             }
             display: block;
-            font-size: 0.8em;
-
             .static {
                 display: block;
                 border-radius: 3px;
-                background-color: @colorSubtitle;
-                color: #000;
-                font-size: 0.7em;
-                padding: 2px 4px;
+                background-color: @colorNavSubtitle;
+                color: @colorNavHighlight;
+                font-size: 70%;
+                padding: 2px 6px;
                 float: right;
             }
         }
 
         .subtitle {
-            margin-top: 10px;
-            font: bold 0.65em Helvetica;
-            color: @colorSubtitle;
+            margin: 10px 0;
+            font-weight: bold;
+            color: @colorNavSubtitle;
             display: block;
         }
 
 
         ul {
             & > li {
-                font-size: 0.7em;
-                padding-left: 8px;
-                margin-top: 2px;
+                padding-left: 10px;
+                font-size: 0.9em;
             }
         }
+    }
 
-        .itemMembers {
-            display: none;
+    // Hide everything by default
+    .item, .itemMembers, .itemMembers li {
+        display: none;
+    }
+
+    // If we aren't searching show the 
+    // all of the contents of current select item
+    &.not-searching .item {
+        display: block;
+        &.current {
+            .itemMembers, .itemMembers li {
+                display: block;
+            }
+        }
+    }
+
+    // If searching, only show matches
+    &.searching .item.match {
+        display: block;
+        .itemMembers.match, .itemMembers li.match {
+            display: block;
         }
     }
 }
