@@ -20,6 +20,33 @@
     bottom:0;
     background-color: @colorNavBg;
 
+    .menu-toggle {
+        display:none;
+    }
+
+    @media screen and (max-width:768px) {
+        & {
+            left: 0;
+            position: relative;
+            width: 100%;
+            overflow: auto;
+            .search,
+            .list {
+                display: none;
+                &.show {
+                    display: block;
+                    position: static;
+                }
+            }
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        }
+    }
+
     .applicationName {
         margin: 0;
         padding: 20px;

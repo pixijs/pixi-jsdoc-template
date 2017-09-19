@@ -2,6 +2,7 @@ $(function () {
 
     var $nav = $('.navigation');
     var $list = $nav.find('.list');
+    var $search = $('.search');
 
     // Search input
     $('#search').on('keyup', function (e) {
@@ -28,6 +29,11 @@ $(function () {
                 .removeClass('match');
         }
         $list.scrollTop(0);
+    });
+
+    $('#menuToggle').click(function() {
+        $list.toggleClass('show');
+        $search.toggleClass('show');
     });
 
     // Show an item related a current documentation automatically
