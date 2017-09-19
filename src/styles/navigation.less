@@ -89,23 +89,27 @@
             }
         }
         .title {
-            cursor: pointer;
-            position: relative;
+            display: block;
             a {
+                display:block;
                 color: @colorNavNormal;
                 &:hover {
                     color: @colorNavHighlight;
                 }
             }
-            display: block;
-            .static {
-                display: block;
+            &.namespace a {
+                color: @colorTextInvert;
+            }
+            .namespaceTag {
+                display: inline-block;
                 border-radius: 3px;
                 background-color: @colorNavSubtitle;
                 color: @colorNavHighlight;
                 font-size: 70%;
                 padding: 2px 6px;
-                float: right;
+                float:left;
+                margin-right: 10px;
+                pointer-events: none;
             }
         }
 
@@ -114,6 +118,7 @@
             font-weight: bold;
             color: @colorNavSubtitle;
             display: block;
+            letter-spacing: 0.05em;
         }
 
 
@@ -122,6 +127,10 @@
                 padding-left: 10px;
                 font-size: 0.9em;
             }
+        }
+
+        .itemMembers li.parent a {
+            color: @colorNavSpecial;
         }
     }
 
