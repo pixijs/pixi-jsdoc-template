@@ -9,7 +9,12 @@
 
 .main {
 
-    margin-left:25%;
+    left:25%;
+    position:fixed;
+    height:100%;
+    right:0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
     word-break: break-word;
 
     .summary-list dt {
@@ -28,9 +33,9 @@
         }
     }
 
-    @media screen and (max-width:1040px) {
+    @media screen and (max-width:1000px) {
         & {
-            margin-left: @navWidth;
+            left: @navWidth;
         }
     }
 

@@ -147,6 +147,7 @@ function generateSourceFiles(sourceFiles) {
         try {
             source = {
                 kind: 'source',
+                filename: sourceFiles[file].shortened,
                 code: helper.htmlsafe( fs.readFileSync(sourceFiles[file].resolved, 'utf8') )
             };
         }

@@ -2,6 +2,11 @@
     var data = obj;
 ?>
     <section>
+        <header>
+            <div class="header content-size">
+                <h2><?js= data.filename ?></h2>
+            </div>
+        </header>
         <article>
             <pre id="source-code" class="prettyprint source <?js= env.conf.templates.linenums ? 'linenums' : '' ?>"><code><?js= data.code ?></code></pre>
         </article>
