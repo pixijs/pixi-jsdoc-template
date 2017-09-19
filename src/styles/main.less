@@ -138,19 +138,7 @@
 
     .nameContainer {
         position: relative;
-        .inherited {
-            display: inline-block;
-            border-radius: 3px;
-            background-color: @colorTextSubtle;
-            font-size: 70%;
-            padding: 2px 4px;
-            margin-right: 5px;
-            a {
-                color: @colorTextInvert;
-            }
-        }
-        
-        .overrides {
+        .inherited, .overrides {
             display: inline-block;
             border-radius: 3px;
             background-color: @colorTextSubtle;
@@ -176,11 +164,7 @@
             }
         }
 
-        &.inherited {
-            color: @colorTextSubtle;
-        }
-        
-        &.overrides {
+        &.inherited, &.overrides {
             color: @colorTextSubtle;
         }
 
@@ -193,10 +177,6 @@
                 font-size: 0.7em;
             }
         }
-    }
-
-    pre {
-        // font-size: 11px;
     }
 
     table {
