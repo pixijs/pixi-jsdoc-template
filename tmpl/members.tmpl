@@ -13,6 +13,12 @@ if (data.type && data.type.names) {
     <div class="nameContainer">
         <h4 class="name" id="<?js= id ?>">
             <a class="share-icon" href="#<?js= id ?>"><span class="glyphicon glyphicon-link"></span></a>
+            <?js if (data.inherited || data.inherits) { ?>
+                <span class="inherited"><?js= this.linkto(data.inherits, 'inherited') ?></span>
+            <?js } ?>
+            <?js if (data.overrides) { ?>
+                <span class="overrides"><?js= this.linkto(data.overrides, 'overrides') ?></span>
+            <?js } ?>
             <?js= data.attribs + (data.scope === 'static' ? longname : name)  + typeSignature ?>
         </h4>
     </div>

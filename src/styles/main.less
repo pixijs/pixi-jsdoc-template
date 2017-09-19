@@ -149,6 +149,18 @@
                 color: @colorTextInvert;
             }
         }
+        
+        .overrides {
+            display: inline-block;
+            border-radius: 3px;
+            background-color: @colorTextSubtle;
+            font-size: 70%;
+            padding: 2px 4px;
+            margin-right: 5px;
+            a {
+                color: @colorTextInvert;
+            }
+        }
 
         .tag-source {
             position: absolute;
@@ -165,6 +177,10 @@
         }
 
         &.inherited {
+            color: @colorTextSubtle;
+        }
+        
+        &.overrides {
             color: @colorTextSubtle;
         }
 
