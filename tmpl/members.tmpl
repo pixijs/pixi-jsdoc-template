@@ -4,22 +4,25 @@ var self = this;
 var typeSignature = '';
 
 if (data.type && data.type.names) {
+    typeSignature += '<span class="type-signature type">';
     data.type.names.forEach(function (name) {
-        typeSignature += '<span class="type-signature type ' + name.toLowerCase() + '">' + self.linkto(name, self.htmlsafe(name)) + '</span> ';
+        typeSignature += self.linkto(name, self.htmlsafe(name));
+        typeSignature += ' | ';
     });
+    typeSignature = typeSignature.slice(0, -3) + '</span>';
 }
 ?>
 <dt>
     <div class="nameContainer">
         <h4 class="name" id="<?js= id ?>">
             <a class="share-icon" href="#<?js= id ?>"><span class="glyphicon glyphicon-link"></span></a>
+            <?js= (data.scope === 'static' ? longname : name)  + typeSignature + data.attribs ?>
             <?js if (data.inherited || data.inherits) { ?>
-                <span class="inherited"><?js= this.linkto(data.inherits, 'inherited') ?></span>
+                <span class="access-signature inherited"><?js= this.linkto(data.inherits, 'inherited') ?></span>
             <?js } ?>
             <?js if (data.overrides) { ?>
-                <span class="overrides"><?js= this.linkto(data.overrides, 'overrides') ?></span>
+                <span class="access-signature overrides"><?js= this.linkto(data.overrides, 'overrides') ?></span>
             <?js } ?>
-            <?js= data.attribs + (data.scope === 'static' ? longname : name)  + typeSignature ?>
         </h4>
     </div>
     
