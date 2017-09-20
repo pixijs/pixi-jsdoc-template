@@ -69,13 +69,12 @@ function addSignatureReturns(f) {
     f.signature = '<span class="signature">'+(f.signature || '') + '</span>';
     
     if (returnTypes.length) {
-        f.signature += '<span class="return-symbol glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">'+(returnTypes.length ? returnTypes.join(' | ') : '')+'</span>';
+        f.signature += '<span class="type-signature">'+(returnTypes.length ? returnTypes.join(' | ') : '')+'</span>';
     }
 }
 
 function addSignatureTypes(f) {
     var types = helper.getSignatureTypes(f);
-    
     f.signature = (f.signature || '') + '<span class="access-signature">'+(types.length? ' :'+types.join('|') : '')+'</span>';
 }
 
@@ -83,7 +82,10 @@ function addAttribs(f) {
     var attribs = helper.getAttribs(f);
 
     if (attribs.length) {
-        f.attribs = '<span class="access-signature ' + (attribs[0] === 'static' ? 'static' : '') + '">' + htmlsafe(attribs.length ? attribs.join(', ') : '') + '</span>';
+        f.attribs = '';
+        attribs.forEach(function(a) {
+            f.attribs += '<span class="access-signature">' + htmlsafe(a) + '</span>'
+        });
     }    
 }
 

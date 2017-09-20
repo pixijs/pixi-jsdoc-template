@@ -3,16 +3,16 @@ var data = obj;
 var self = this;
 ?>
 <dt>
-    <div class="nameContainer<?js if (data.inherited) { ?> inherited<?js } else if (data.overrides) { ?> overrides<?js } ?>">
+    <div class="nameContainer">
         <h4 class="name" id="<?js= id ?>">
             <a class="share-icon" href="#<?js= id ?>"><span class="glyphicon glyphicon-link"></span></a>
+            <?js=  (kind === 'class' ? 'new ' : '') + (data.scope === 'static' ? longname : name) + (kind !== 'event' ? data.signature : '') + data.attribs ?>
             <?js if (data.inherited || data.inherits) { ?>
-                <span class="inherited"><?js= this.linkto(data.inherits, 'inherited') ?></span>
+                <span class="access-signature inherited"><?js= this.linkto(data.inherits, 'inherited') ?></span>
             <?js } ?>
             <?js if (data.overrides) { ?>
-                <span class="overrides"><?js= this.linkto(data.overrides, 'overrides') ?></span>
+                <span class="access-signature overrides"><?js= this.linkto(data.overrides, 'overrides') ?></span>
             <?js } ?>
-            <?js= data.attribs + (kind === 'class' ? 'new ' : '') + (data.scope === 'static' ? longname : name) + (kind !== 'event' ? data.signature : '') ?>
         </h4>
     
         <?js if (data.meta) {?>

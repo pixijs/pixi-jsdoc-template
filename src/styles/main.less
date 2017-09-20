@@ -61,6 +61,9 @@
         }
         .header {
             padding:20px;
+            h2 {
+                font-weight: bold;
+            }
         }
     }
 
@@ -69,40 +72,42 @@
     }
 
     .access-signature {
+        font-weight: normal;
         display: inline-block;
         border-radius: 3px;
         background-color: @colorTextSubtle;
         color: @colorTextInvert;
         font-size: 0.7em;
         padding: 2px 6px;
-        margin-right: 6px;
+        margin-left: 6px;
         &.deprecated {
             background-color: @colorSubtitle;
             font-size: 0.9em;
+        }
+        a {
+            color: @colorTextInvert;
         }
     }
 
     h4.name {
         .type-signature {
-            margin-left: 5px;
             font-weight: normal;
-            font-size: 85%;
+            font-size: 0.8em;
             color: @colorTextSubtle;
+            &:before {
+                content: ' : ';
+                opacity: 0.6;
+            }
         }
 
         .return-symbol {
-            margin-left: 6px;
+            margin: 0 6px;
             color: @colorTextSubtle;
             font-size: 80%;
         }
 
         .share-icon {
             font-size:70%;
-            color: @colorTextSubtle;
-        }
-
-        .returnType {
-            margin-left: 3px;
             color: @colorTextSubtle;
         }
     }
@@ -118,6 +123,7 @@
         }
 
         h2 {
+            font-weight: bold;
             margin-top: 30px;
             margin-bottom: 10px;
             padding-bottom: 10px;
@@ -135,20 +141,12 @@
     dt.tag-source {
         margin-top: 5px;
     }
+    dt.tag-default {
+        color: @colorTextSubtle;
+    }
 
     .nameContainer {
         position: relative;
-        .inherited, .overrides {
-            display: inline-block;
-            border-radius: 3px;
-            background-color: @colorTextSubtle;
-            font-size: 70%;
-            padding: 2px 4px;
-            margin-right: 5px;
-            a {
-                color: @colorTextInvert;
-            }
-        }
 
         .tag-source {
             position: absolute;
@@ -164,17 +162,14 @@
             }
         }
 
-        &.inherited, &.overrides {
-            color: @colorTextSubtle;
-        }
-
         h4 {
+            font-weight: bold;
             padding: 20px 0 0;
             border-top: 1px solid @colorLine;
             .signature {
                 font-weight: normal;
-                font-family: @fontMonospace;
-                font-size: 0.7em;
+                font-size: .8em;
+                padding-left: 0.4em;
             }
         }
     }
@@ -185,6 +180,7 @@
 
         th {
             padding: 3px 3px;
+            color: @colorTextSubtle;
         }
 
         td {
@@ -233,11 +229,20 @@
             line-height: 1.2;
         }
 
+        h1 {
+            font-weight: bold;
+        }
+
         h2 {
+            font-weight: bold;
             margin-top: 30px;
             margin-bottom: 10px;
             padding-bottom: 10px;
             border-bottom: 1px solid @colorTextSubtle;
+        }
+
+        h3 {
+            color: @colorSubtitle;
         }
 
         li {
