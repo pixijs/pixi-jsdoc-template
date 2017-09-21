@@ -17,7 +17,7 @@
   },
   "scripts": {
     "clean": "rimraf static/**/main.*",
-    "lint": "jshint publish.js src/scripts/*.js || exit 0",
+    "lint": "jshint publish.js src/scripts/*.js",
     "build": "npm run clean && npm run lint && npm run build:js && npm run build:css",
     "watch": "parallelshell 'npm run watch:js' 'npm run watch:css'",
     "build:js": "uglifyjs src/scripts/*.js -m -o static/scripts/main.js",

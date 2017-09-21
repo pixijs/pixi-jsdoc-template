@@ -84,7 +84,7 @@ function addAttribs(f) {
     if (attribs.length) {
         f.attribs = '';
         attribs.forEach(function(a) {
-            f.attribs += '<span class="access-signature">' + htmlsafe(a) + '</span>'
+            f.attribs += '<span class="access-signature">' + htmlsafe(a) + '</span>';
         });
     }    
 }
