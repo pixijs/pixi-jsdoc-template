@@ -15,7 +15,7 @@ var self = this;
             <?js } ?>
         </h4>
     
-        <?js if (data.meta) {?>
+        <?js if (data.meta && env.conf.templates['default'].outputSourceFiles) {?>
         <div class="tag-source">
             <?js= self.linkto(meta.filename, meta.filename.substr(meta.filename.lastIndexOf('/') + 1) + ':' + meta.lineno, null, 'line' + meta.lineno) ?>
         </div>
