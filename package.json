@@ -17,7 +17,7 @@
   },
   "scripts": {
     "clean": "rimraf static/**/main.*",
-    "lint": "jshint publish.js src/scripts/*.js",
+    "lint": "jshint plugins publish.js src/scripts/*.js",
     "build": "npm run clean && npm run lint && npm run build:js && npm run build:css",
     "watch": "parallelshell 'npm run watch:js' 'npm run watch:css'",
     "build:js": "uglifyjs src/scripts/*.js -m -o static/scripts/main.js",
@@ -41,7 +41,8 @@
   "files": [
     "static",
     "tmpl",
-    "publish.js"
+    "publish.js",
+    "plugins"
   ],
   "author": "Matt Karl <matt@mattkarl.com>",
   "license": "MIT",
