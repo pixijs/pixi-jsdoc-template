@@ -6,7 +6,19 @@ var self = this;
     <div class="nameContainer">
         <h4 class="name" id="<?js= id ?>">
             <a class="share-icon" href="#<?js= id ?>"><span class="glyphicon glyphicon-link"></span></a>
-            <?js=  (kind === 'class' ? 'new ' : '') + (data.scope === 'static' ? longname : name) + (kind !== 'event' ? data.signature : '') + data.attribs ?>
+            <span class="<?js= data.deprecated ? 'status-deprecated' : '' ?>">
+                <?js= (kind === 'class' ? 'new ' : '') + (data.scope === 'static' ? longname : name) ?>
+            </span>
+            <?js= (kind !== 'event' ? data.signature : '') ?>
+            <?js if (data.deprecated) { ?>
+                <span class="access-signature deprecated">Deprecated<?js
+                    if (typeof data.deprecated === 'string') { ?>
+                    : <span class="deprecated-info"><?js= data.deprecated ?></span>
+                    <?js }
+                ?>
+                </span>
+            <?js } ?>
+            <?js= data.attribs ?>
             <?js if (data.inherited || data.inherits) { ?>
                 <span class="access-signature inherited"><?js= this.linkto(data.inherits, 'inherited') ?></span>
             <?js } ?>

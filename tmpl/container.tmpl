@@ -76,7 +76,7 @@
         <h3 class="subsection-title">Classes</h3>
         
         <dl class="clearfix summary-list list-classes"><?js classes.forEach(function(c) { ?>
-            <dt><?js= self.linkto(c.longname, c.name) ?></dt>
+            <dt class="<?js= c.deprecated ? 'status-deprecated' : ''?>"><?js= self.linkto(c.longname, c.name) ?></dt>
             <?js if (c.summary) { ?><dd><?js= c.summary ?></dd><?js } ?>
         <?js }); ?></dl>
     <?js } ?>
@@ -88,7 +88,7 @@
         <h3 class="subsection-title">Namespaces</h3>
         
         <dl class="clearfix summary-list list-namespaces"><?js namespaces.forEach(function(n) { ?>
-            <dt><a href="namespaces.html#<?js= n.longname ?>"><?js= self.linkto(n.longname, n.name) ?></a></dt>
+            <dt class="<?js= n.deprecated ? 'status-deprecated' : ''?>"><a href="namespaces.html#<?js= n.longname ?>"><?js= self.linkto(n.longname, n.name) ?></a></dt>
 
             <?js if (n.summary) { ?><dd><?js= n.summary ?></dd><?js } ?>
         <?js }); ?></dl>

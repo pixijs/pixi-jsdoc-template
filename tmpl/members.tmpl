@@ -16,7 +16,17 @@ if (data.type && data.type.names) {
     <div class="nameContainer">
         <h4 class="name" id="<?js= id ?>">
             <a class="share-icon" href="#<?js= id ?>"><span class="glyphicon glyphicon-link"></span></a>
-            <?js= (data.scope === 'static' ? longname : name)  + typeSignature + data.attribs ?>
+            <span class="<?js= data.deprecated ? 'status-deprecated' : '' ?>"><?js= (data.scope === 'static' ? longname : name) ?></span>
+            <?js= typeSignature ?>
+            <?js if (data.deprecated) { ?>
+                <span class="access-signature deprecated">Deprecated<?js
+                    if (typeof data.deprecated === 'string') { ?>
+                    : <span class="deprecated-info"><?js= data.deprecated ?></span>
+                    <?js }
+                ?>
+                </span>
+            <?js } ?>
+            <?js= data.attribs ?>
             <?js if (data.inherited || data.inherits) { ?>
                 <span class="access-signature inherited"><?js= this.linkto(data.inherits, 'inherited') ?></span>
             <?js } ?>

@@ -211,6 +211,7 @@ function buildNav(members) {
             nav.push({
                 type: 'namespace',
                 longname: v.longname,
+                deprecated: v.deprecated,
                 name: v.name,
                 members: find({
                     kind: 'member',
@@ -246,6 +247,7 @@ function buildNav(members) {
                 type: 'class',
                 longname: v.longname,
                 name: v.name,
+                deprecated: v.deprecated,
                 members: find({
                     kind: 'member',
                     memberof: v.longname
