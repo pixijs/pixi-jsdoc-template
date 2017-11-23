@@ -14,7 +14,7 @@ var self = this;
     this.nav.forEach(function (item) {
     ?>
         <li class="item" data-name="<?js= item.longname ?>">
-            <span class="title <?js if (item.type === 'namespace') { ?>namespace<?js } ?>">
+            <span class="title <?js if (item.type === 'namespace') { ?>namespace<?js } ?> <?js if (item.deprecated) { ?>status-deprecated<?js } ?>">
                 <?js if (item.type === 'namespace') { ?>
                 <span class="namespaceTag">
                     <span class="glyphicon glyphicon-folder-open"></span>
@@ -30,7 +30,7 @@ var self = this;
             <?js
                 item.members.forEach(function (v) {
             ?>
-                <li class="<?js if (!v.inherited && !v.inherits) { ?>parent<?js } ?>" data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <li class="<?js if (!v.inherited && !v.inherits) { ?>parent<?js } ?> <?js if (v.deprecated) { ?>status-deprecated<?js } ?>" data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js
                 });
             }
@@ -73,7 +73,7 @@ var self = this;
 
                 item.methods.forEach(function (v) {
             ?>
-                <li class="<?js if (!v.inherited && !v.inherits) { ?>parent<?js } ?>" data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <li class="<?js if (!v.inherited && !v.inherits) { ?>parent<?js } ?>  <?js if (v.deprecated) { ?>status-deprecated<?js } ?>" data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js
                 });
             }

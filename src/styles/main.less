@@ -7,6 +7,14 @@
     margin-right: auto;
 }
 
+.status-deprecated {
+    text-decoration: line-through;
+    opacity: 0.4;
+    a, &:hover {
+        text-decoration: none;
+    }
+}
+
 .main {
 
     left:25%;
@@ -82,7 +90,11 @@
         margin-left: 6px;
         &.deprecated {
             background-color: @colorSubtitle;
-            font-size: 0.9em;
+            font-weight: bold;
+            .deprecated-info {
+                font-weight: normal;
+                margin-left: 5px;
+            }
         }
         a {
             color: @colorTextInvert;
