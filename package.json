@@ -1,6 +1,6 @@
 {
   "name": "@pixi/jsdoc-template",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "PixiJS template for JSDoc 3",
   "dependencies": {
     "taffydb": "^2.7.2",
