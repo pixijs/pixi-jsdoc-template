@@ -241,6 +241,19 @@ function buildNav(members) {
         });
     }
 
+    if (members.globals.length) {
+        nav.push({
+            type: 'namespace',
+            longname: 'global',
+            members: members.globals.filter(function(v) { return v.kind === 'member'; }),
+            methods: members.globals.filter(function(v) { return v.kind === 'function'; }),
+            typedefs: members.globals.filter(function(v) { return v.kind === 'typedef'; }),
+            interfaces: members.globals.filter(function(v) { return v.kind === 'interface'; }),
+            events: members.globals.filter(function(v) { return v.kind === 'event'; }),
+            classes: members.globals.filter(function(v) { return v.kind === 'class'; })
+        });
+    }
+
     if (members.classes.length) {
         _.each(members.classes, function (v) {
             nav.push({
