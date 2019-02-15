@@ -13,15 +13,18 @@ var self = this;
     <?js
     this.nav.forEach(function (item) {
     ?>
-        <li class="item" data-name="<?js= item.longname ?>">
+        <li class="item" data-name="<?js= (item.type === 'tutorial' ? 'tutorial-' : '') + item.longname ?>">
             <span class="title <?js if (item.type === 'namespace') { ?>namespace<?js } ?> <?js if (item.deprecated) { ?>status-deprecated<?js } ?>">
-                <?js if (item.type === 'namespace') { ?>
+                <?js if (item.type === 'namespace' || item.type === 'tutorial') { ?>
                 <span class="namespaceTag">
-                    <span class="glyphicon glyphicon-<?js= (item.longname === 'global') ? 'globe' : 'folder-open' ?>"></span>
+                    <span class="glyphicon glyphicon-<?js= (item.longname === 'global') ? 'globe' : (item.type === 'tutorial' ? 'education' : 'folder-open') ?>"></span>
                 </span>
                 <?js } ?>
-                <?js= self.linkto(item.longname, item.longname === 'global' ? 'Global' : item.longname) ?>
+                <?js= item.type === 'tutorial' ? self.tutoriallink(item.longname) : self.linkto(item.longname, item.longname === 'global' ? 'Global' : item.longname) ?>
             </span>
+            <?js
+            if (item.members) {
+            ?>
             <ul class="members itemMembers">
             <?js
             if (item.members.length) {
@@ -36,6 +39,10 @@ var self = this;
             }
             ?>
             </ul>
+            <?js
+            }
+            if (item.typedefs) {
+            ?>
             <ul class="typedefs itemMembers">
             <?js
             if (item.typedefs.length) {
@@ -50,6 +57,10 @@ var self = this;
             }
             ?>
             </ul>
+            <?js 
+            }
+            if (item.interfaces) {
+            ?>
             <ul class="typedefs itemMembers">
             <?js
             if (item.interfaces.length) {
@@ -64,6 +75,10 @@ var self = this;
             }
             ?>
             </ul>
+            <?js 
+            }
+            if (item.methods) {
+            ?>
             <ul class="methods itemMembers">
             <?js
             if (item.methods.length) {
@@ -79,6 +94,10 @@ var self = this;
             }
             ?>
             </ul>
+            <?js 
+            }
+            if (item.events) {
+            ?>
             <ul class="events itemMembers">
             <?js
             if (item.events.length) {
@@ -93,6 +112,27 @@ var self = this;
             }
             ?>
             </ul>
+            <?js 
+            }
+            if (item.children) {
+            ?>
+            <ul class="children itemMembers">
+            <?js
+            if (item.children.length) {
+            ?>
+            <span class="subtitle"><?js= item.type === 'tutorial' ? 'Sub Tutorials' : 'Children' ?></span>
+            <?js
+                item.children.forEach(function (v) {
+            ?>
+                <li class="parent" data-name="<?js= v.longname ?>"><?js= self.tutoriallink(v.longname) ?></li>
+            <?js
+                });
+            }
+            ?>
+            </ul>
+            <?js
+            }
+            ?>
         </li>
     <?js }); ?>
     </ul>
