@@ -190,6 +190,27 @@ function attachModuleSymbols(doclets, modules) {
 }
 
 /**
+ * Prepares a tutorial for the navigation sidebar.
+ * @param {object} tutorial
+ * @param {object} parent
+ * @param {object} the tutorial object
+ */
+function prepareTutorialNav(tutorial,parent) {
+    var result = {
+        type: 'tutorial',
+        name: tutorial.name,
+        longname: tutorial.longname,
+        title: tutorial.title,
+        parent: parent
+    };
+
+    result.children = _.map(tutorial.children,function(c) { return prepareTutorialNav(c,tutorial); });
+
+    return result;
+}
+
+
+/**
  * Create the navigation sidebar.
  * @param {object} members The members that will be used to create the sidebar.
  * @param {array<object>} members.classes
@@ -287,14 +308,7 @@ function buildNav(members) {
 
     if (members.tutorials.length) {
         _.each(members.tutorials, function(v) {
-            nav.push({
-                type: 'tutorial',
-                name: v.name,
-                longname: v.longname,
-                title: v.title,
-                children: v.children,
-                parent: v.parent
-            });
+            nav.push(prepareTutorialNav(v));
         });
     }
 

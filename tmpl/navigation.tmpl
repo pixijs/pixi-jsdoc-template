@@ -11,7 +11,7 @@ var self = this;
     </div>
     <ul class="list">
     <?js
-    this.nav.forEach(function (item) {
+    function process(item) {
     ?>
         <li class="item" data-name="<?js= (item.type === 'tutorial' ? 'tutorial-' : '') + item.longname ?>">
             <span class="title <?js if (item.type === 'namespace') { ?>namespace<?js } ?> <?js if (item.deprecated) { ?>status-deprecated<?js } ?>">
@@ -114,18 +114,23 @@ var self = this;
             </ul>
             <?js 
             }
+            if (item.parent) {
+            ?>
+            <ul class="parent itemMembers">
+            <li><span class="subtitle">&lt;&lt;&lt; </span><span class="title"><?js= self.tutoriallink(item.parent.longname) ?></span></li>
+            </ul>
+            <?js
+            }
             if (item.children) {
             ?>
             <ul class="children itemMembers">
             <?js
             if (item.children.length) {
             ?>
-            <span class="subtitle"><?js= item.type === 'tutorial' ? 'Sub Tutorials' : 'Children' ?></span>
+            <span class="subtitle"></span>
             <?js
                 item.children.forEach(function (v) {
-            ?>
-                <li class="parent" data-name="<?js= v.longname ?>"><?js= self.tutoriallink(v.longname) ?></li>
-            <?js
+                    process(v);
                 });
             }
             ?>
@@ -134,6 +139,9 @@ var self = this;
             }
             ?>
         </li>
-    <?js }); ?>
+    <?js }; ?>
+    <?js
+    this.nav.forEach(process);
+    ?>
     </ul>
 </div>
