@@ -404,15 +404,15 @@ exports.publish = function(taffyData, opts, tutorials) {
         staticFileFilter = new (require('jsdoc/src/filter').Filter)(conf.default.staticFiles);
         staticFileScanner = new (require('jsdoc/src/scanner').Scanner)();
 
-        staticFilePaths.forEach(filePath => {
-            let extraStaticFiles;
+        staticFilePaths.forEach(function(filePath) {
+            var extraStaticFiles;
 
             filePath = path.resolve(env.pwd, filePath);
             extraStaticFiles = staticFileScanner.scan([filePath], 10, staticFileFilter);
 
-            extraStaticFiles.forEach(fileName => {
-                const sourcePath = fs.toDir(filePath);
-                const toDir = fs.toDir( fileName.replace(sourcePath, outdir) );
+            extraStaticFiles.forEach(function(fileName) {
+                var sourcePath = fs.toDir(filePath);
+                var toDir = fs.toDir( fileName.replace(sourcePath, outdir) );
 
                 fs.mkPath(toDir);
                 fs.copyFileSync(fileName, toDir);
