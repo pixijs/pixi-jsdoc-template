@@ -77,10 +77,6 @@
         bottom: 0;
     }
 
-    li:not(.current) > ul.parent {
-      display:none !important;
-    }
-
     li.item {
         margin-bottom: 8px;
         padding-bottom: 8px;
@@ -152,6 +148,9 @@
         li.item {
             border-bottom: none;
             padding-bottom: 0px;
+        }
+        li.current {
+            font-weight: bold;
         }
     }
 
