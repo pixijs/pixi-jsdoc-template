@@ -46,6 +46,8 @@ $(function () {
         // current item.
         if ($currentItem.parents('.children').length) {
             $currentItem.addClass('current');
+            // need to make all children not current
+            $currentItem.find('li.item').addClass('notCurrent');
             $currentItem = $currentItem.parents('ul.list>li.item');
         }
         $currentItem
