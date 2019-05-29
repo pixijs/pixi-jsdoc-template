@@ -1,5 +1,8 @@
 <?js
 var self = this;
+var canStyleAsNamespace = function(item) {
+    return item.type === 'namespace' || item.type === 'module';
+};
 ?>
 <div class="navigation">
     <h3 class="applicationName"><a href="index.html"><?js= env.conf.templates.applicationName ?></a></h3>
@@ -14,13 +17,20 @@ var self = this;
     function process(item) {
     ?>
         <li class="item" data-name="<?js= (item.type === 'tutorial' ? 'tutorial-' : '') + item.longname ?>">
-            <span class="title <?js if (item.type === 'namespace') { ?>namespace<?js } ?> <?js if (item.deprecated) { ?>status-deprecated<?js } ?>">
-                <?js if (item.type === 'namespace' || item.type === 'tutorial') { ?>
+            <span class="title <?js if (canStyleAsNamespace(item)) { ?>namespace<?js } ?> <?js if (item.deprecated) { ?>status-deprecated<?js } ?>">
+                <?js if (canStyleAsNamespace(item)) { ?>
+
                 <span class="namespaceTag">
                     <span class="glyphicon glyphicon-<?js= (item.longname === 'global') ? 'globe' : (item.type === 'tutorial' ? 'education' : 'folder-open') ?>"></span>
                 </span>
                 <?js } ?>
-                <?js= item.type === 'tutorial' ? self.tutoriallink(item.longname) : self.linkto(item.longname, item.longname === 'global' ? 'Global' : item.longname) ?>
+                <?js if (item.type === 'module') { ?>
+                    <?js= self.linkto(item.longname, item.name) ?>
+                <?js } else if (item.type === 'tutorial') { ?>
+                    <?js= self.tutoriallink(item.longname) ?>
+                <?js } else { ?>
+                    <?js= self.linkto(item.longname, item.longname === 'global' ? 'Global' : item.longname) ?>
+                <?js } ?>
             </span>
             <?js
             if (item.members) {

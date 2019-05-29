@@ -39,7 +39,7 @@ $(function () {
     // Show an item related a current documentation automatically
     $nav.addClass('not-searching');
     var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
-    var $currentItem = $nav.find('.item[data-name*="' + filename + '"]:eq(0)');
+    var $currentItem = $nav.find('a[href*="' + filename + '"]:eq(0)').closest('.item');
 
     if ($currentItem.length) {
         // if a child then show the top level parent and highlight the
