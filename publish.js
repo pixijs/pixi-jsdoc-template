@@ -395,18 +395,25 @@ exports.publish = function(taffyData, opts, tutorials) {
     var staticFilePaths;
     var staticFileFilter;
     var staticFileScanner;
-    if (conf['default'].staticFiles) {
-        staticFilePaths = conf['default'].staticFiles.paths || [];
-        staticFileFilter = new (require('jsdoc/src/filter')).Filter(conf['default'].staticFiles);
-        staticFileScanner = new (require('jsdoc/src/scanner')).Scanner();
+    if (conf.default.staticFiles) {
+        // The canonical property name is `include`. We accept `paths` for backwards compatibility
+        // with a bug in JSDoc 3.2.x.
+        staticFilePaths = conf.default.staticFiles.include ||
+            conf.default.staticFiles.paths ||
+            [];
+        staticFileFilter = new (require('jsdoc/src/filter').Filter)(conf.default.staticFiles);
+        staticFileScanner = new (require('jsdoc/src/scanner').Scanner)();
 
         staticFilePaths.forEach(function(filePath) {
-            var extraStaticFiles = staticFileScanner.scan([filePath], 10, staticFileFilter);
+            var extraStaticFiles;
+
+            filePath = path.resolve(env.pwd, filePath);
+            extraStaticFiles = staticFileScanner.scan([filePath], 10, staticFileFilter);
 
             extraStaticFiles.forEach(function(fileName) {
-                var sourcePath = fs.statSync(filePath).isDirectory() ? filePath :
-                    path.dirname(filePath);
+                var sourcePath = fs.toDir(filePath);
                 var toDir = fs.toDir( fileName.replace(sourcePath, outdir) );
+
                 fs.mkPath(toDir);
                 fs.copyFileSync(fileName, toDir);
             });
