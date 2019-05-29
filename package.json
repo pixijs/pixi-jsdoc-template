@@ -10,7 +10,7 @@
     "jshint": "^2.9.2",
     "less": "^2.7.1",
     "less-plugin-clean-css": "^1.5.1",
-    "parallelshell": "^3.0.1",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^2.5.2",
     "uglify-js": "^2.6.2",
     "watch": "^1.0.2"
@@ -18,8 +18,8 @@
   "scripts": {
     "clean": "rimraf static/**/main.*",
     "lint": "jshint plugins publish.js src/scripts/*.js",
-    "build": "npm run clean && npm run lint && npm run build:js && npm run build:css",
-    "watch": "parallelshell 'npm run watch:js' 'npm run watch:css'",
+    "build": "run-s clean lint build:*",
+    "watch": "run-p watch:*",
     "build:js": "uglifyjs src/scripts/*.js -m -o static/scripts/main.js",
     "watch:js": "watch 'npm run build:js' src/scripts",
     "build:css": "lessc src/styles/index.less static/styles/main.css --clean-css",
