@@ -42,6 +42,14 @@ $(function () {
     var $currentItem = $nav.find('a[href*="' + filename + '"]:eq(0)').closest('.item');
 
     if ($currentItem.length) {
+        // if a child then show the top level parent and highlight the
+        // current item.
+        if ($currentItem.parents('.children').length) {
+            $currentItem.addClass('current');
+            // need to make all children not current
+            $currentItem.find('li.item').addClass('notCurrent');
+            $currentItem = $currentItem.parents('ul.list>li.item');
+        }
         $currentItem
             .remove()
             .prependTo($list)

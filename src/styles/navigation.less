@@ -88,6 +88,16 @@
                 color: #fff;
             }
         }
+
+        .parent {
+            margin-top: 6px;
+            .subtitle, .title {
+                display: inline;
+                a {
+                    display:inline;
+                }
+            }
+        }
         .title {
             display: block;
             a {
@@ -131,6 +141,19 @@
 
         .itemMembers li.parent a {
             color: @colorNavSpecial;
+        }
+    }
+
+    .children {
+        li.item {
+            border-bottom: none;
+            padding-bottom: 0px;
+        }
+        li.notCurrent {
+            font-weight: normal;
+        }
+        li.current {
+            font-weight: bold;
         }
     }
 
