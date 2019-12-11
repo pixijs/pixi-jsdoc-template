@@ -53,6 +53,14 @@
         <?js }); ?></ul>
     <?js } ?>
     
+    <?js if (doc.augments && doc.augments.length) { ?>
+        <h3 class="subsection-title">Implements</h3>
+        
+        <ul><?js doc.augments.forEach(function(a) { ?>
+            <li><?js= self.linkto(a, a) ?></li>
+        <?js }); ?></ul>
+    <?js } ?>
+    
     <?js if (doc.mixes && doc.mixes.length) { ?>
         <h3 class="subsection-title">Mixes In</h3>
         
