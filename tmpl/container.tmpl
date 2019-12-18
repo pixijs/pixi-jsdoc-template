@@ -55,10 +55,10 @@
         <?js }); ?></ul>
     <?js } ?>
     
-    <?js if (doc.augments && doc.augments.length) { ?>
+    <?js if (doc.implements && doc.implements.length) { ?>
         <h3 class="subsection-title">Implements</h3>
         
-        <ul><?js doc.augments.forEach(function(a) { ?>
+        <ul><?js doc.implements.forEach(function(a) { ?>
             <li><?js= self.linkto(a, a) ?></li>
         <?js }); ?></ul>
     <?js } ?>
@@ -98,7 +98,7 @@
         <h3 class="subsection-title">Namespaces</h3>
         
         <dl class="clearfix summary-list list-namespaces"><?js namespaces.forEach(function(n) { ?>
-            <dt class="<?js= n.deprecated ? 'status-deprecated' : ''?>"><a href="namespaces.html#<?js= n.longname ?>"><?js= self.linkto(n.longname, n.name) ?></a></dt>
+            <dt class="<?js= n.deprecated ? 'status-deprecated' : ''?>"><?js= self.linkto(n.longname, n.name) ?></dt>
 
             <?js if (n.summary) { ?><dd><?js= n.summary ?></dd><?js } ?>
         <?js }); ?></dl>
