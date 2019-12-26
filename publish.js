@@ -13,7 +13,14 @@ var template = require('jsdoc/template'),
     hasOwnProp = Object.prototype.hasOwnProperty,
     data,
     view,
-    outdir = env.opts.destination;
+    outdir = env.opts.destination,
+    faviconTypes = {
+        '.ico': 'image/x-icon',
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.gif': 'image/gif'
+    };
 
 function find(spec) {
     return helper.find(data, spec);
@@ -467,6 +474,20 @@ exports.publish = function(taffyData, opts, tutorials) {
                 fs.copyFileSync(fileName, toDir);
             });
         });
+    }
+
+    // copy the favicon
+    if (conf.favicon) {
+        var stats = fs.lstatSync(conf.favicon);
+        if (stats.isFile()) {
+            var extname = path.extname(conf.favicon);
+            fs.copyFileSync(conf.favicon, outdir, 'favicon' + extname);
+            conf.favicon = 'favicon' + extname;
+            conf.faviconType = faviconTypes[extname];
+        }
+        else {
+            delete conf.favicon;
+        }
     }
 
     if (sourceFilePaths.length) {
