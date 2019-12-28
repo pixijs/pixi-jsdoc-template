@@ -29,6 +29,7 @@ You can set options for customizing your documentations. Notice the `"template"`
     "applicationName": "Demo",
     "disqus": "",
     "googleAnalytics": "",
+    "favicon": "path/to/favicon.png",
     "openGraph": {
         "title": "",
         "type": "website",

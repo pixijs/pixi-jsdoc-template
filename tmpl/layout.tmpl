@@ -10,6 +10,9 @@
         <meta name="keyword" content="<?js= env.conf.templates.meta.keyword ?>" />
     <?js } ?>
     <?js } ?>
+    <?js if (env.conf.templates.favicon) { ?>
+    <link rel="icon" type="<?js= env.conf.templates.faviconType ?>" href="<?js= env.conf.templates.favicon ?>"/>
+    <?js } ?>
     <?js if (env.conf.templates.openGraph) { ?>
     <meta property="og:title" content="<?js= env.conf.templates.openGraph.title ?>"/>
     <meta property="og:type" content="<?js= env.conf.templates.openGraph.type ?>"/>
