@@ -24,7 +24,9 @@
     "watch:js": "watch 'npm run build:js' src/scripts",
     "build:css": "lessc src/styles/index.less static/styles/main.css --clean-css",
     "watch:css": "watch 'npm run build:css' src/styles",
-    "test": "npm run build"
+    "test": "npm run build",
+    "postversion": "git push && git push --tags",
+    "prepublish": "run-s build"
   },
   "repository": {
     "type": "git",
