@@ -31,7 +31,7 @@
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="styles/main.css">
-    
+
     <?js if (env.conf.templates) { ?>
     <script>
     var config = <?js= JSON.stringify(env.conf.templates) ?>;
@@ -43,7 +43,7 @@
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', config.googleAnalytics]);
       _gaq.push(['_trackPageview']);
-    
+
       (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -76,5 +76,19 @@
 </div>
 <script>prettyPrint();</script>
 <script src="scripts/main.js"></script>
+<?js if (env.conf.pixi && env.conf.pixi.styles && env.conf.pixi.styles.length) {
+      for (var i = 0; i < env.conf.pixi.styles.length; i++) {
+      ?>
+      <link type="text/css" rel="stylesheet" href="<?js= env.conf.pixi.styles[i] ?>">
+      <?js
+      }
+} ?>
+<?js if (env.conf.pixi && env.conf.pixi.scripts && env.conf.pixi.scripts.length) {
+      for (var i = 0; i < env.conf.pixi.scripts.length; i++) {
+      ?>
+      <script src="<?js= env.conf.pixi.scripts[i] ?>"></script>
+      <?js
+      }
+} ?>
 </body>
 </html>
